@@ -29,8 +29,10 @@ def contents(text, prefix, heading):
     for number, entry in enumerate(sections(text), 1):
         title = re.split(r'\.\s+', entry, maxsplit=1)[0]
         items.append(f'<li><a href="#{prefix}-{number}">{number}. {html.escape(title)}</a></li>')
-    return (f'<div class="toc-group"><a class="toc-heading" href="#{prefix}">{heading}</a>'
-            f'<ol>{"".join(items)}</ol></div>')
+    return (f'<details class="toc-group" open>'
+            f'<summary class="toc-summary"><a class="toc-heading" href="#{prefix}">{heading}</a>'
+            '<span class="toc-toggle" aria-hidden="true" title="Expand or collapse subsections"></span></summary>'
+            f'<ol>{"".join(items)}</ol></details>')
 
 
 template = (root / 'template.html').read_text()

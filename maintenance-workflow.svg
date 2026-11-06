@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 292" role="img" aria-labelledby="title desc">
+  <title id="title">Maintenance and validation of an existing toolkit</title>
+  <desc id="desc">Original Pipeline/Toolkit connects to Maintain and Validate, with Contribution Appreciated below.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M1 1 7 4 1 7" fill="none" stroke="#8390a2" stroke-width="1.3" stroke-linecap="square"/>
+    </marker>
+  </defs>
+  <g fill="none" stroke="#aeb7c4" stroke-width="1.25">
+    <path d="M200 74V96H100V114" marker-end="url(#arrow)"/>
+    <path d="M200 96H300V114" marker-end="url(#arrow)"/>
+    <path d="M186 144H214" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+    <path d="M100 174V208H300V174"/>
+    <path d="M200 208V232" marker-end="url(#arrow)"/>
+  </g>
+  <rect x="20" y="18" width="360" height="56" rx="3" fill="#fff" stroke="#c9cfd8"/>
+  <rect x="20" y="116" width="160" height="56" rx="3" fill="#f4f6fa" stroke="#bbc6d7"/>
+  <rect x="220" y="116" width="160" height="56" rx="3" fill="#f4f6fa" stroke="#bbc6d7"/>
+  <rect x="20" y="234" width="360" height="42" rx="3" fill="#fff" stroke="#c9cfd8"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" fill="#30343b" text-anchor="middle">
+    <text x="200" y="52">Original Pipeline/Toolkit</text>
+    <text x="100" y="150">Maintain</text>
+    <text x="300" y="150">Validate</text>
+    <text x="200" y="261" font-size="17">Contribution Appreciated</text>
+  </g>
+</svg>
