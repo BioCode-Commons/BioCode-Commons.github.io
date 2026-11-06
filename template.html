@@ -3,31 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sustaining and modernizing bioinformatics software through collaborative maintenance, rigorous validation, and lasting recognition of contributors.">
-  <meta name="theme-color" content="#f5f4ef">
-  <meta property="og:title" content="BioCode Commons">
-  <meta property="og:description" content="Maintenance, refactoring, optimization, and validation of bioinformatics software.">
-  <meta property="og:type" content="website">
-  <title>BioCode Commons — Bioinformatics toolkit</title>
+  <title>BioCode Commons</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header wrap">
-    <a href="#" class="brand" aria-label="BioCode Commons home"><span class="brand-mark" aria-hidden="true">b<span>c</span></span><span>BioCode<span class="brand-secondary">Commons</span></span></a>
-    <nav aria-label="Main navigation"><a href="#community">Community</a><a href="#approach">Our approach</a><a class="github-link" href="https://github.com/BioCode-Commons">GitHub <span aria-hidden="true">↗</span></a></nav>
-  </header>
-  <main id="main">
-    <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Bioinformatics software</p>
-        <h1 id="hero-title">Maintaining and improving<br><em>Bioinformatics toolkit.</em></h1>
-        <p class="mission">{{MISSION}}</p>
-        <a class="button" href="#community">Read about our work <span aria-hidden="true">↘</span></a>
-      </div>
-      <div class="hero-art" role="img" aria-label="Illustration of a contribution history. The attribution system is in development.">
-        <div class="art-topline"><span>Contribution history · illustration</span><span aria-hidden="true">↗</span></div>
-        <svg viewBox="0 0 480 450" aria-hidden="true">
+  <main>
+    <div class="intro">
+      <p class="mission">{{MISSION}}</p>
+      <figure aria-label="Illustration of a contribution history">
+<svg viewBox="0 0 480 450" aria-hidden="true">
           <defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#d1d1ca"/></pattern></defs>
           <rect width="480" height="450" fill="url(#grid)"/>
           <g fill="none" stroke-width="3"><path class="trunk" d="M120 404V48" stroke="#343b35"/><path d="M120 333C120 280 302 300 302 226V91" stroke="#737aac"/><path d="M120 247C120 204 211 224 211 157V48" stroke="#97ab87"/><path d="M302 226C302 175 390 195 390 132V48" stroke="#737aac"/></g>
@@ -37,20 +22,16 @@
           <g font-family="ui-monospace, monospace" font-size="12" fill="#555b54"><text x="143" y="381">original software</text><text x="143" y="162">maintain</text><text x="326" y="231">validate</text><text x="234" y="75">give credit</text></g>
           <circle class="pulse" cx="120" cy="70" r="16" fill="none" stroke="#7c956a" stroke-width="1.5"/>
         </svg>
-        <div class="art-caption"><span class="mono">Contributor attribution</span><span>Attribution system in development.</span></div>
-      </div>
+      </figure>
+    </div>
+    <section id="community" aria-labelledby="community-title">
+      <h2 id="community-title">Community Engagement</h2>
+      {{COMMUNITY}}
     </section>
-    <div class="principle-strip"><div class="wrap"><span>Collaborative maintenance</span><span class="divider" aria-hidden="true">/</span><span>Rigorous validation</span><span class="divider" aria-hidden="true">/</span><span>Lasting recognition</span></div></div>
-    <section id="community" class="community wrap" aria-labelledby="community-title">
-      <div class="section-heading"><p class="eyebrow">01 / Community engagement</p><h2 id="community-title">Maintainers and<br>contributors</h2></div>
-      <div class="community-rows">{{COMMUNITY}}</div>
+    <section id="approach" aria-labelledby="approach-title">
+      <h2 id="approach-title">Our Approach</h2>
+      {{APPROACH}}
     </section>
-    <section id="approach" class="approach" aria-labelledby="approach-title"><div class="wrap">
-      <div class="section-heading"><p class="eyebrow">02 / Our approach</p><h2 id="approach-title">How we work</h2></div>
-      <div class="approach-grid">{{APPROACH}}</div>
-    </div></section>
-    <section class="join wrap" aria-labelledby="join-title"><div><p class="eyebrow">Developers and maintainers</p><h2 id="join-title">Get involved</h2></div><a class="button" href="https://github.com/BioCode-Commons">View repositories <span aria-hidden="true">↗</span></a></section>
   </main>
-  <footer class="site-footer wrap"><a class="footer-brand" href="#">BioCode Commons</a><a href="https://docs.google.com/document/d/1w9EBx7nDaz8boPwisk31kjCKy8vyJB_KMRgfcQD0oYc/edit">Read the source document <span aria-hidden="true">↗</span></a></footer>
 </body>
 </html>
