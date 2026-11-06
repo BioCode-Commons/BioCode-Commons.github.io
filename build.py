@@ -2,12 +2,14 @@
 """Build a dependency-free website from the supplied source document."""
 from pathlib import Path
 import html
+import json
 import re
 
 root = Path(__file__).resolve().parent
 source = (root / 'content/source.txt').read_text(encoding='utf-8-sig')
 mission, rest = source.split('Community Engagement', 1)
 community, approach = rest.split('Our Approach', 1)
+navigation = json.loads((root / 'content/navigation.json').read_text())
 
 
 def sections(text):
@@ -25,10 +27,14 @@ def rows(text, kind, prefix):
 
 
 def contents(text, prefix, heading):
+    entries = sections(text)
+    labels = navigation[prefix]
+    if len(labels) != len(entries):
+        raise ValueError(f'{prefix}: provide one navigation label per source section')
     items = []
-    for number, entry in enumerate(sections(text), 1):
+    for number, (entry, label) in enumerate(zip(entries, labels), 1):
         title = re.split(r'\.\s+', entry, maxsplit=1)[0]
-        items.append(f'<li><a href="#{prefix}-{number}">{number}. {html.escape(title)}</a></li>')
+        items.append(f'<li><a href="#{prefix}-{number}" title="{html.escape(title)}">{html.escape(label)}</a></li>')
     return (f'<details class="toc-group" open>'
             f'<summary class="toc-summary"><a class="toc-heading" href="#{prefix}">{heading}</a>'
             '<span class="toc-toggle" aria-hidden="true" title="Expand or collapse subsections"></span></summary>'

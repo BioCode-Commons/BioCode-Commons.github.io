@@ -13,11 +13,11 @@ body { margin: 0; background: #fff; color: var(--ink); font-family: -apple-syste
 .toc-toggle::before { content: ""; width: 6px; height: 6px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(-45deg); }
 .toc-group[open] > .toc-summary .toc-toggle::before { transform: rotate(45deg); }
 .toc-toggle:hover { background: #edf1fa; }
-nav a { display: block; color: var(--muted); text-decoration: none; font-size: 13px; line-height: 1.55; padding: 6px 10px; border-left: 2px solid transparent; }
-nav a:hover, nav a:focus-visible { color: var(--accent); background: #edf1fa; border-left-color: var(--accent); }
-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-nav .toc-heading { color: var(--ink); font-size: 14px; font-weight: 600; }
-nav ol { list-style: none; margin: 4px 0 0; padding-left: 12px; }
+.sidebar nav a, .mobile-header nav a { display: block; color: var(--muted); text-decoration: none; font-size: 13px; line-height: 1.55; padding: 6px 10px; border-left: 2px solid transparent; }
+.sidebar nav a:hover, .sidebar nav a:focus-visible, .mobile-header nav a:hover, .mobile-header nav a:focus-visible { color: var(--accent); background: #edf1fa; border-left-color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sidebar nav .toc-heading, .mobile-header nav .toc-heading { color: var(--ink); font-size: 14px; font-weight: 600; }
+.sidebar nav ol, .mobile-header nav ol { list-style: none; margin: 4px 0 0; padding-left: 12px; }
 .mobile-header { display: none; }
 main { width: min(960px, calc(100% - 280px)); margin-left: 280px; padding: 56px 56px 80px; }
 h1 { font-size: clamp(28px, 2.8vw, 36px); font-weight: 600; letter-spacing: -.7px; line-height: 1.3; margin: 0 0 28px; max-width: 790px; }
@@ -25,6 +25,14 @@ h1 { font-size: clamp(28px, 2.8vw, 36px); font-weight: 600; letter-spacing: -.7p
 .mission { font-size: 19px; line-height: 1.75; margin: 0; }
 figure { margin: 0; }
 .workflow-figure img { display: block; width: 100%; height: auto; }
+.entry-links { display: flex; flex-wrap: wrap; gap: 16px 28px; margin: -16px 0 48px; }
+.entry-links a, .project a { color: var(--accent); text-underline-offset: 4px; }
+.project p { margin: 0 0 12px; }
+.project-status, .contact-list dd { color: var(--muted); }
+.contact-list { margin: 0; }
+.contact-list > div { display: flex; gap: 24px; margin-bottom: 12px; }
+.contact-list dt { width: 80px; font-weight: 500; }
+.contact-list dd { margin: 0; }
 section { scroll-margin-top: 30px; }
 section + section { margin-top: 48px; }
 h2 { font-size: 30px; font-weight: 600; letter-spacing: -.5px; line-height: 1.3; margin: 0 0 28px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }

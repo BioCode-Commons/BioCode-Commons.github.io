@@ -1,4 +1,4 @@
-﻿We aim to maintain and modernize widely used bioinformatics toolkits by constructing a thriving community rooted in collaborative development, rigorous validation, transparent AI governance, and lasting recognition of contributors.
+﻿We aim to maintain and modernize widely used bioinformatics toolkits by building a thriving community rooted in collaborative development, rigorous validation, transparent AI governance, and lasting recognition of contributors.
 
 Community Engagement
 1. Supporting long-term toolkits maintenance. 

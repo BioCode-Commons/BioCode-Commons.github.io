@@ -6,7 +6,7 @@ The mission, three Community Engagement sections, and four Our Approach sections
 
 ## Edit and preview
 
-Edit `content/source.txt` for body content, `template.html` for page structure, and `styles.css` for styling. Python 3 is the only build dependency:
+Edit `content/source.txt` for body content, `content/navigation.json` for short sidebar labels, `template.html` for page structure, project information and contact details, and `styles.css` for styling. Slack, Discord and email are explicitly marked as awaiting contact details. Python 3 is the only build dependency:
 
 ```sh
 python3 build.py
