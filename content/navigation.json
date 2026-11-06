@@ -9,5 +9,19 @@
     "Performance optimization",
     "Algorithm design",
     "Workflow integration"
+  ],
+  "actions": [
+    {
+      "label": "View projects",
+      "href": "#projects",
+      "children": [
+        {"label": "NuSTAR", "href": "#project-nustar"}
+      ]
+    },
+    {
+      "label": "Contribute",
+      "href": "https://github.com/BioCode-Commons/NuSTAR/blob/documentation/CONTRIBUTING.md"
+    },
+    {"label": "Contact us", "href": "#contact"}
   ]
 }

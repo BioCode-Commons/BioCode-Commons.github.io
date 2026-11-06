@@ -5,6 +5,7 @@ body { margin: 0; background: #fff; color: var(--ink); font-family: -apple-syste
 .sidebar { position: fixed; inset: 0 auto 0 0; width: 280px; padding: 32px 24px; border-right: 1px solid var(--line); overflow-y: auto; background: #fafbfc; }
 .site-name { font-size: 21px; font-weight: 650; letter-spacing: -.4px; line-height: 1.4; margin-bottom: 32px; }
 .toc-group + .toc-group { margin-top: 26px; }
+.nav-action { margin-top: 16px; }
 .toc-summary { display: flex; align-items: center; cursor: pointer; list-style: none; }
 .toc-summary::-webkit-details-marker { display: none; }
 .toc-summary .toc-heading { flex: 1; min-width: 0; }
@@ -24,9 +25,9 @@ h1 { font-size: clamp(28px, 2.8vw, 36px); font-weight: 600; letter-spacing: -.7p
 .intro { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 32px; margin-bottom: 48px; }
 .mission { font-size: 19px; line-height: 1.75; margin: 0; }
 figure { margin: 0; }
-.workflow-figure img { display: block; width: 100%; height: auto; }
-.entry-links { display: flex; flex-wrap: wrap; gap: 16px 28px; margin: -16px 0 48px; }
-.entry-links a, .project a { color: var(--accent); text-underline-offset: 4px; }
+.intro-figure { width: 100%; max-width: 340px; justify-self: end; }
+.intro-figure img { display: block; width: 100%; height: auto; }
+.project a { color: var(--accent); text-underline-offset: 4px; }
 .project p { margin: 0 0 12px; }
 .project-status, .contact-list dd { color: var(--muted); }
 .contact-list { margin: 0; }

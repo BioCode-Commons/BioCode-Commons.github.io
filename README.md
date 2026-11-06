@@ -15,6 +15,6 @@ python3 -m http.server 8080
 
 Open http://localhost:8080. Commit the generated `index.html` alongside source changes. GitHub Pages serves the root of the `main` branch; `.nojekyll` keeps it a static site.
 
-The site uses system fonts, local SVG artwork, no third-party scripts, no analytics, and no package dependencies. It supports mobile layouts, keyboard navigation, and reduced-motion preferences.
+The site uses system fonts, a user-supplied illustration, no third-party scripts, no analytics, and no package dependencies. It supports mobile layouts, keyboard navigation, and reduced-motion preferences.
 
 AI assisted with the page implementation. The source document's statements about human review describe the organization's stated approach; they do not certify that this website or any individual software project has undergone a comprehensive human audit.

@@ -43,12 +43,28 @@ def contents(text, prefix, heading):
             f'<ol>{"".join(items)}</ol></details>')
 
 
+def action_contents(items):
+    output = []
+    for item in items:
+        link = f'<a class="toc-heading" href="{html.escape(item["href"], quote=True)}">{html.escape(item["label"])}</a>'
+        children = item.get('children', [])
+        if children:
+            child_links = ''.join(f'<li><a href="{html.escape(child["href"], quote=True)}">{html.escape(child["label"])}</a></li>' for child in children)
+            output.append('<details class="toc-group" open><summary class="toc-summary">' + link
+                          + '<span class="toc-toggle" aria-hidden="true" title="Expand or collapse subsections"></span>'
+                          + f'</summary><ol>{child_links}</ol></details>')
+        else:
+            output.append('<div class="nav-action">' + link + '</div>')
+    return ''.join(output)
+
+
 template = (root / 'template.html').read_text()
 rendered = template.replace('{{MISSION}}', html.escape(mission.strip()))
 rendered = rendered.replace('{{COMMUNITY}}', rows(community, 'community-row', 'community'))
 rendered = rendered.replace('{{APPROACH}}', rows(approach, 'approach-card', 'approach'))
 rendered = rendered.replace('{{CONTENTS}}', contents(community, 'community', 'Community Engagement')
-                            + contents(approach, 'approach', 'Our Approach'))
+                            + contents(approach, 'approach', 'Our Approach')
+                            + action_contents(navigation['actions']))
 
 
 def version_asset(match):
