@@ -2,8 +2,10 @@
 """Build a dependency-free website from the supplied source document."""
 from pathlib import Path
 import html
+import hashlib
 import json
 import re
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 root = Path(__file__).resolve().parent
 source = (root / 'content/source.txt').read_text(encoding='utf-8-sig')
@@ -47,5 +49,20 @@ rendered = rendered.replace('{{COMMUNITY}}', rows(community, 'community-row', 'c
 rendered = rendered.replace('{{APPROACH}}', rows(approach, 'approach-card', 'approach'))
 rendered = rendered.replace('{{CONTENTS}}', contents(community, 'community', 'Community Engagement')
                             + contents(approach, 'approach', 'Our Approach'))
+
+
+def version_asset(match):
+    parts = urlsplit(match.group(2))
+    path = root / parts.path
+    if parts.scheme or parts.netloc or not path.is_file():
+        return match.group(0)
+    version = hashlib.blake2s(path.read_bytes(), digest_size=6).hexdigest()
+    query = [(key, value) for key, value in parse_qsl(parts.query) if key != 'v']
+    query.append(('v', version))
+    url = urlunsplit(('', '', parts.path, urlencode(query), parts.fragment))
+    return f'{match.group(1)}="{html.escape(url, quote=True)}"'
+
+
+rendered = re.sub(r'(href|src)="([^"]+)"', version_asset, rendered)
 (root / 'index.html').write_text(rendered)
 print('Built index.html: original mission, 3 community sections, 4 approach sections.')
