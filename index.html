@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BioCode Commons</title>
   <link rel="icon" href="favicon.svg?v=e3b2caba0f7e" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=354ed1d6178a">
+  <link rel="stylesheet" href="styles.css?v=c72cb64a256b">
 </head>
 <body>
   <aside class="sidebar">
@@ -48,6 +48,27 @@
     </section>
     <section id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
+
+      <div class="benchmark-table-wrap overview-table-wrap" role="region" aria-label="Pipeline overview" tabindex="0">
+        <table aria-label="Maintained pipeline summary">
+          <thead><tr><th scope="col">Pipeline</th><th scope="col">Measured speedup</th><th scope="col">Original's last code update</th><th scope="col">100% reproduced?</th></tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="#project-nustar">NuSTAR</a></th>
+              <td>0.839× full-human two-pass; 2.66× older Solo test at 32 threads</td>
+              <td><a href="https://github.com/alexdobin/STAR/commit/b1edc1208d91a53bf40ebae8669f71d50b994851"><time datetime="2024-01-25">2024-01-25</time></a> · STAR</td>
+              <td>No overall: one <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md#a-known-behavior-difference">documented option</a> differs; full-human alignment output is Pending.</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#project-nuexpansionhunter">NuExpansionHunter</a></th>
+              <td>1.460×–3.142× across 4–32 cores</td>
+              <td><a href="https://github.com/Illumina/ExpansionHunter/commit/dc477e1379ed202bbfa103a75e023107a2b02c36"><time datetime="2024-01-30">2024-01-30</time></a> · ExpansionHunter</td>
+              <td>HG002 output matched (BAM order ignored); all inputs and options: Pending.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="overview-note">Original update dates are latest commits on the original repositories' master branches, checked 2026-11-11 (UTC). Output agreement on a tested workload does not establish 100% reproduction for every input and option.</p>
 
       <article class="project" aria-labelledby="project-nustar">
         <h3 id="project-nustar"><a href="https://github.com/BioCode-Commons/NuSTAR/tree/main">NuSTAR</a></h3>

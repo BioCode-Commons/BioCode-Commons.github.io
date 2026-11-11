@@ -17,6 +17,10 @@ figure { margin: 0; }
 .intro-figure { width: 100%; max-width: 340px; justify-self: end; }
 .intro-figure img { display: block; width: 100%; height: auto; }
 .project a { color: var(--accent); text-underline-offset: 4px; }
+.overview-table-wrap { margin: 0 0 10px; }
+.overview-table-wrap a { color: var(--accent); text-underline-offset: 3px; }
+.overview-table-wrap tbody th { font-weight: 600; }
+.overview-note { margin: 0 0 34px; color: var(--muted); font-size: 12px; line-height: 1.6; }
 .project + .project { margin-top: 38px; padding-top: 28px; border-top: 1px solid var(--line); }
 .project h3 { margin-bottom: 6px; font-size: 19px; }
 .project h4 { margin: 18px 0 8px; font-size: 14px; font-weight: 600; }
@@ -28,6 +32,7 @@ figure { margin: 0; }
 .benchmark-table-wrap thead th { border-top: 1px solid var(--line); color: var(--muted); font-weight: 600; }
 .benchmark-table-wrap tbody th { font-weight: 500; }
 .benchmark-table-wrap td:nth-child(n+2) { white-space: nowrap; }
+.overview-table-wrap td:nth-child(n+2) { white-space: normal; }
 .project-status { color: var(--muted); }
 .sidebar nav > a + a, .mobile-header nav > a + a { margin-top: 10px; }
 section > p { margin: 0 0 22px; line-height: 1.8; }
