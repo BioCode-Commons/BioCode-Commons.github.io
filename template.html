@@ -37,15 +37,46 @@
     </section>
     <section id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
-      <div class="project">
-        <h3 id="project-nustar"><a href="https://github.com/BioCode-Commons/NuSTAR">NuSTAR</a></h3>
-        <p>A refactored implementation of STAR for bulk and single-cell RNA-seq. Work includes paired-end alignment, two-pass indexing, and STARsolo integration.</p>
-        <p class="project-status">In development. Benchmarks and output comparisons for the updated implementation are pending.</p>
-      </div>
+
+      <article class="project" aria-labelledby="project-nustar">
+        <h3 id="project-nustar"><a href="https://github.com/BioCode-Commons/NuSTAR/tree/main">NuSTAR</a></h3>
+        <p>We maintain a STAR-derived mapper for bulk and single-cell RNA-seq, including paired-end alignment, two-pass mapping, and STARsolo workflows.</p>
+        <h4>Benchmark Results</h4>
+        <div class="benchmark-table-wrap" role="region" aria-label="NuSTAR benchmark results" tabindex="0">
+          <table>
+            <thead><tr><th scope="col">Workload</th><th scope="col">Cores / threads</th><th scope="col">Wall time, STAR → NuSTAR (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, STAR → NuSTAR (GiB)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Full-human two-pass · 535.7M reads</th><td>Pending</td><td>1,598.68 → 1,906.23</td><td>0.839×</td><td>49.49 → 40.73</td></tr>
+              <tr><th scope="row">Solo gene counting · 1M reads</th><td>32 threads</td><td>20.74 → 7.79</td><td>2.66×</td><td>Pending</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="benchmark-note">Speedup is STAR time / NuSTAR time; 0.839× means slower. Single runs from different builds. The full-human STAR baseline was reused; the older Solo test used synthetic barcodes. Current-build benchmarks and broader accuracy checks are pending. <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md">Methods and validation</a>.</p>
+      </article>
+
+      <article class="project" aria-labelledby="project-nuexpansionhunter">
+        <h3 id="project-nuexpansionhunter"><a href="https://github.com/BioCode-Commons/ExpansionHunter/tree/main">NuExpansionHunter</a></h3>
+        <p>We maintain an Illumina ExpansionHunter fork for repeat-expansion analysis, including catalog reuse, alignment, seed lookup, and BAM output.</p>
+        <h4>Benchmark Results</h4>
+        <div class="benchmark-table-wrap" role="region" aria-label="NuExpansionHunter benchmark results" tabindex="0">
+          <table>
+            <thead><tr><th scope="col">Workload</th><th scope="col">Cores / threads</th><th scope="col">Wall time, EH → NuExpansionHunter (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, EH → NuExpansionHunter (GiB)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602 → 2,168.563</td><td>1.520×</td><td>15.338 → 10.588</td></tr>
+              <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735 → 1,167.031</td><td>1.460×</td><td>15.681 → 10.593</td></tr>
+              <tr><th scope="row">HG002</th><td>16 cores</td><td>1,248.945 → 659.187</td><td>1.895×</td><td>29.584 → 10.613</td></tr>
+              <tr><th scope="row">HG002</th><td>32 cores</td><td>1,064.277 → 338.709</td><td>3.142×</td><td>35.956 → 10.614</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="benchmark-note">Complete HG002 PCR-free WGS, 174,293-locus Illumina hg38 catalog. One run per core count against historical original-EH timings; catalog preparation and output comparison excluded. VCF/JSON matched byte for byte; BAM headers and all records matched, ignoring record order. <a href="https://github.com/BioCode-Commons/ExpansionHunter/blob/main/BENCHMARKS.md">Methods and validation</a>.</p>
+      </article>
     </section>
     <section id="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contribute &amp; Contact</h2>
-      <p>Coordinator: Jiapeng Zhang, University of Southern California. jiapengz@usc.edu .</p>
+      <p>Join us on Discord to ask questions, discuss projects, or contribute.</p>
+      <p><a class="discord-link" href="https://discord.gg/AEQjM3y5S">Join our Discord <span aria-hidden="true">↗</span></a></p>
+    </section>
   </main>
 </body>
 </html>
