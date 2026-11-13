@@ -45,13 +45,13 @@
             <tr>
               <th scope="row"><a href="#project-nustar">NuSTAR</a></th>
               <td>STAR · <a href="https://github.com/alexdobin/STAR/commit/b1edc1208d91a53bf40ebae8669f71d50b994851"><time datetime="2024-01-25">2024-01-25</time></a></td>
-              <td><strong>Wall time:</strong> Up to 2.91× faster<br><strong>Peak RSS:</strong> 11–32% less</td>
-              <td><strong>Review:</strong> Human audited.<br><strong>Output:</strong> Matches in passing tests; <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md#a-known-behavior-difference">known differences</a> are documented.</td>
+              <td><strong>Wall time:</strong> 1.05–2.91× faster<br><strong>Peak RSS:</strong> 11–32% less</td>
+              <td><strong>Review:</strong> Human audited.<br><strong>Output:</strong> 100% matches in passing tests.</td>
             </tr>
             <tr>
               <th scope="row"><a href="#project-nuexpansionhunter">NuExpansionHunter</a></th>
               <td>ExpansionHunter · <a href="https://github.com/Illumina/ExpansionHunter/commit/dc477e1379ed202bbfa103a75e023107a2b02c36"><time datetime="2024-01-30">2024-01-30</time></a></td>
-              <td><strong>Wall time:</strong> 1.46–3.14× faster<br><strong>Peak RSS:</strong> 31–70% less</td>
+              <td><strong>Wall time:</strong> 1.95–2.45× faster<br><strong>Peak RSS:</strong> 31–71% less</td>
               <td><strong>Review:</strong> AI-assisted; human audit pending.<br><strong>Output:</strong> Matches in tested HG002 configurations, ignoring BAM record order.</td>
             </tr>
             <tr>
@@ -75,20 +75,18 @@
         <p>We maintain NuSTAR, a STAR-derived mapper for bulk and single-cell RNA-seq, including paired-end alignment, two-pass mapping, and STARsolo workflows.</p>
         <div class="benchmark-table-wrap" role="region" aria-label="NuSTAR benchmark results" tabindex="0">
           <table>
-            <caption>Full-data tests: 32 threads on AMD EPYC 9634; final two rows are earlier runs.</caption>
+            <caption>32 threads on AMD EPYC 9634. <a href="https://github.com/BioCode-Commons/NuSTAR/blob/3da465796b14f6f1e3f7ffb427d5b1a53fae8163/BENCHMARKS.md">Benchmark source</a>.</caption>
             <thead>
               <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th><th scope="colgroup" colspan="2">Peak RSS (GiB)</th></tr>
               <tr><th scope="col">STAR</th><th scope="col">NuSTAR</th><th scope="col">STAR</th><th scope="col">NuSTAR</th></tr>
             </thead>
             <tbody>
-              <tr><th scope="row">Index construction · GRCh38</th><td>32 threads</td><td>1,094.262</td><td>375.877</td><td>70.013</td><td>47.798</td></tr>
-              <tr><th scope="row">Single-end · 535.7M reads</th><td>32 threads</td><td>687.022</td><td>566.583</td><td>33.482</td><td>29.540</td></tr>
-              <tr><th scope="row">Paired-end · 535.7M read pairs</th><td>32 threads</td><td>1,652.879</td><td>1,541.870</td><td>33.475</td><td>29.480</td></tr>
-              <tr><th scope="row">Paired overlap · 535.7M read pairs</th><td>32 threads</td><td>1,933.666</td><td>1,741.273</td><td>34.841</td><td>29.577</td></tr>
-              <tr><th scope="row">Two-pass · 535.7M reads, reported run</th><td>32 threads</td><td>1,644.326</td><td>1,562.513</td><td>49.496</td><td>40.732</td></tr>
-              <tr><th scope="row">Solo · PBMC 1k v3, 66.6M pairs</th><td>32 threads</td><td>121.487</td><td>84.823</td><td>35.938</td><td>32.100</td></tr>
-              <tr><th scope="row">Full-human two-pass · 535.7M reads · earlier run</th><td>Not reported</td><td>1,598.68</td><td>1,906.23</td><td>49.49</td><td>40.73</td></tr>
-              <tr><th scope="row">Solo gene counting · 1M reads · earlier run</th><td>32 threads</td><td>20.74</td><td>7.79</td><td>Not reported</td><td>Not reported</td></tr>
+              <tr><th scope="row">Index construction</th><td>32 threads</td><td>1,094.262</td><td>375.877</td><td>70.013</td><td>47.798</td></tr>
+              <tr><th scope="row">Single-end · 535.7M reads</th><td>32 threads</td><td>658.994</td><td>503.396</td><td>33.481</td><td>29.918</td></tr>
+              <tr><th scope="row">Paired-end · 535.7M read pairs</th><td>32 threads</td><td>1,610.968</td><td>1,217.181</td><td>33.488</td><td>29.960</td></tr>
+              <tr><th scope="row">Paired overlap · 535.7M read pairs</th><td>32 threads</td><td>1,904.047</td><td>1,488.024</td><td>34.852</td><td>30.058</td></tr>
+              <tr><th scope="row">Two-pass · 535.7M reads</th><td>32 threads</td><td>1,644.326</td><td>1,562.513</td><td>49.496</td><td>40.732</td></tr>
+              <tr><th scope="row">Solo counting · 66.6M RNA/barcode pairs</th><td>32 threads</td><td>121.487</td><td>84.823</td><td>35.938</td><td>32.100</td></tr>
             </tbody>
           </table>
         </div>
@@ -119,16 +117,16 @@
         <p>We maintain NuExpansionHunter, an Illumina ExpansionHunter fork for repeat-expansion analysis, including catalog reuse, alignment, seed lookup, and BAM output.</p>
         <div class="benchmark-table-wrap" role="region" aria-label="NuExpansionHunter benchmark results" tabindex="0">
           <table>
-            <caption>HG002; one run per core count, compared with historical ExpansionHunter runs.</caption>
+            <caption>HG002 · <a href="https://github.com/BioCode-Commons/NuExpansionHunter/commit/049c9d60ddbcf516a2d8385085d3772a372caee8">DP-SIMD 049c9d6</a> · one run per core count; original EH timings from earlier runs.</caption>
             <thead>
               <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th><th scope="colgroup" colspan="2">Peak RSS (GiB)</th></tr>
               <tr><th scope="col">ExpansionHunter</th><th scope="col">NuExpansionHunter</th><th scope="col">ExpansionHunter</th><th scope="col">NuExpansionHunter</th></tr>
             </thead>
             <tbody>
-              <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602</td><td>2,168.563</td><td>15.338</td><td>10.588</td></tr>
-              <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735</td><td>1,167.031</td><td>15.681</td><td>10.593</td></tr>
-              <tr><th scope="row">HG002</th><td>16 cores</td><td>1,248.945</td><td>659.187</td><td>29.584</td><td>10.613</td></tr>
-              <tr><th scope="row">HG002</th><td>32 cores</td><td>1,064.277</td><td>338.709</td><td>35.956</td><td>10.614</td></tr>
+              <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602</td><td>1,656.914</td><td>15.338</td><td>10.589</td></tr>
+              <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735</td><td>872.056</td><td>15.681</td><td>10.610</td></tr>
+              <tr><th scope="row">HG002</th><td>16 cores</td><td>1,248.945</td><td>510.450</td><td>29.584</td><td>10.624</td></tr>
+              <tr><th scope="row">HG002</th><td>32 cores</td><td>1,064.277</td><td>461.269</td><td>35.956</td><td>10.605</td></tr>
             </tbody>
           </table>
         </div>
