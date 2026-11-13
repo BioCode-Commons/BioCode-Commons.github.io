@@ -26,6 +26,9 @@ figure { margin: 0; }
 .project h4 { margin: 18px 0 8px; font-size: 14px; font-weight: 600; }
 .project p { margin: 0 0 12px; font-size: 14px; line-height: 1.7; }
 .project .benchmark-note { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.benchmark-details { margin-top: 16px; }
+.benchmark-details > summary { cursor: pointer; color: var(--accent); font-size: 14px; font-weight: 600; }
+.benchmark-details[open] > summary { margin-bottom: 16px; }
 .benchmark-table-wrap { max-width: 100%; overflow-x: auto; }
 .benchmark-table-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.45; font-variant-numeric: tabular-nums; }
 .benchmark-table-wrap th, .benchmark-table-wrap td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }

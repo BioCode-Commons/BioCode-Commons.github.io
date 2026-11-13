@@ -63,15 +63,16 @@
           </tbody>
         </table>
       </div>
-      <p class="overview-note">All factors are original ÷ optimized: above 1 means less time or memory; below 1 means more. Each range covers the workloads and runs linked below. Workloads differ across projects, so these ranges cannot be used to compare projects. TRF activity was checked on 2026-11-12 (UTC); STAR and ExpansionHunter activity was checked on 2026-11-11 (UTC). Matching outputs on tested workloads does not establish equivalence for every input and option.</p>
+      <p class="overview-note">All factors are original ÷ optimized: above 1 means less time or memory; below 1 means more. Each range covers the datasets, tasks, and runs linked below. These differ across projects, so the ranges cannot be used to compare projects. TRF activity was checked on 2026-11-12 (UTC); STAR and ExpansionHunter activity was checked on 2026-11-11 (UTC). Matching outputs on tested datasets and tasks does not establish equivalence for every input and option.</p>
 
       <article class="project" aria-labelledby="project-nustar">
         <h3 id="project-nustar"><a href="https://github.com/BioCode-Commons/NuSTAR/tree/main">NuSTAR</a></h3>
         <p>We maintain NuSTAR, a STAR-derived mapper for bulk and single-cell RNA-seq, including paired-end alignment, two-pass mapping, and STARsolo workflows.</p>
-        <h4>Benchmark Results</h4>
+        <details class="benchmark-details">
+          <summary>View benchmark details</summary>
         <div class="benchmark-table-wrap" role="region" aria-label="NuSTAR benchmark results" tabindex="0">
           <table>
-            <thead><tr><th scope="col">Workload</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, STAR → NuSTAR (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, STAR → NuSTAR (GiB)</th></tr></thead>
+            <thead><tr><th scope="col">Dataset / Task</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, STAR → NuSTAR (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, STAR → NuSTAR (GiB)</th></tr></thead>
             <tbody>
               <tr><th scope="row">Index construction · GRCh38</th><td>32 threads</td><td>1,094.262 → 375.877</td><td>2.91×</td><td>70.013 → 47.798</td></tr>
               <tr><th scope="row">Single-end · 535.7M reads</th><td>32 threads</td><td>687.022 → 566.583</td><td>1.21×</td><td>33.482 → 29.540</td></tr>
@@ -87,15 +88,17 @@
         <p class="benchmark-note"><strong>Method:</strong> The first six rows are single runs performed serially on an AMD EPYC 9634. The report does not identify the NuSTAR build. The last two rows are separate historical measurements: the full-human test reused the STAR baseline, and the older 1M-read Solo test used synthetic barcodes.</p>
         <p class="benchmark-note"><strong>Validation:</strong> Output agreement is limited to the checks in each report. The reports cover different runs, and the NuSTAR README lists measurements for the current implementation as pending. The 0.839× result indicates a slowdown.</p>
         <p class="benchmark-note"><strong>Sources:</strong> <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/BENCHMARKS.md">Full-data benchmarks</a> · <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md">Historical benchmarks and validation</a>.</p>
+        </details>
       </article>
 
       <article class="project" aria-labelledby="project-nutrf">
         <h3 id="project-nutrf"><a href="https://github.com/BioCode-Commons/NuTRF">NuTRF</a></h3>
         <p>NuTRF accelerates Tandem Repeats Finder while preserving its detection model and output formats on the tested inputs.</p>
-        <h4>Benchmark Results</h4>
+        <details class="benchmark-details">
+          <summary>View benchmark details</summary>
         <div class="benchmark-table-wrap" role="region" aria-label="NuTRF benchmark results" tabindex="0">
           <table>
-            <thead><tr><th scope="col">Workload</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, TRF → NuTRF (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, TRF → NuTRF (MiB)</th></tr></thead>
+            <thead><tr><th scope="col">Dataset / Task</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, TRF → NuTRF (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, TRF → NuTRF (MiB)</th></tr></thead>
             <tbody>
               <tr><th scope="row">GRCh38 chr21 · max period 2000</th><td>1 core</td><td>194.2 → 34.5</td><td>5.63×</td><td>215 → 218</td></tr>
               <tr><th scope="row">GRCh38 chr21 · max period 500</th><td>1 core</td><td>109.4 → 24.2</td><td>4.52×</td><td>173 → 173</td></tr>
@@ -107,15 +110,17 @@
         <p class="benchmark-note"><strong>Method:</strong> Whole-chromosome tests on an AMD EPYC 9634 with AVX2, with one pinned core per process. Wall times are medians of three runs on a shared machine. The chr1 test with the default length limit was not timed to completion.</p>
         <p class="benchmark-note"><strong>Validation:</strong> Outputs, standard error, exit status, and file lists matched byte for byte in the reported runs.</p>
         <p class="benchmark-note"><strong>Source:</strong> <a href="https://github.com/BioCode-Commons/NuTRF/blob/main/BENCHMARKS.md">Benchmark methods, all configurations, and limitations</a>.</p>
+        </details>
       </article>
 
       <article class="project" aria-labelledby="project-nuexpansionhunter">
         <h3 id="project-nuexpansionhunter"><a href="https://github.com/BioCode-Commons/NuExpansionHunter/tree/main">NuExpansionHunter</a></h3>
         <p>We maintain NuExpansionHunter, an Illumina ExpansionHunter fork for repeat-expansion analysis, including catalog reuse, alignment, seed lookup, and BAM output.</p>
-        <h4>Benchmark Results</h4>
+        <details class="benchmark-details">
+          <summary>View benchmark details</summary>
         <div class="benchmark-table-wrap" role="region" aria-label="NuExpansionHunter benchmark results" tabindex="0">
           <table>
-            <thead><tr><th scope="col">Workload</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, EH → NuExpansionHunter (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, EH → NuExpansionHunter (GiB)</th></tr></thead>
+            <thead><tr><th scope="col">Dataset / Task</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, EH → NuExpansionHunter (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, EH → NuExpansionHunter (GiB)</th></tr></thead>
             <tbody>
               <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602 → 2,168.563</td><td>1.520×</td><td>15.338 → 10.588</td></tr>
               <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735 → 1,167.031</td><td>1.460×</td><td>15.681 → 10.593</td></tr>
@@ -127,6 +132,7 @@
         <p class="benchmark-note"><strong>Method:</strong> Complete HG002 PCR-free WGS with the 174,293-locus Illumina hg38 catalog. One run per core count, compared with historical original-EH timings. Times exclude catalog preparation and output comparison.</p>
         <p class="benchmark-note"><strong>Validation:</strong> VCF and JSON outputs matched byte for byte. BAM headers and all records matched, ignoring record order.</p>
         <p class="benchmark-note"><strong>Source:</strong> <a href="https://github.com/BioCode-Commons/NuExpansionHunter/blob/main/BENCHMARKS.md">Benchmark methods and validation</a>.</p>
+        </details>
       </article>
     </section>
     <section id="contact" aria-labelledby="contact-title">
