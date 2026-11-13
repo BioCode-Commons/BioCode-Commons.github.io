@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BioCode Commons</title>
   <link rel="icon" href="favicon.svg?v=e3b2caba0f7e" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=acec435616fd">
+  <link rel="stylesheet" href="styles.css?v=754b7f39a2ee">
 </head>
 <body>
   <aside class="sidebar">
@@ -51,99 +51,58 @@
 
       <div class="benchmark-table-wrap overview-table-wrap" role="region" aria-label="Pipeline overview" tabindex="0">
         <table aria-label="Maintained pipeline summary">
-          <thead><tr><th scope="col">Pipeline</th><th scope="col">Original Pipeline and Latest Activity</th><th scope="col">Performance Improvement</th><th scope="col">Validation</th></tr></thead>
+          <thead><tr><th scope="col">Pipeline</th><th scope="col">Original Pipeline</th><th scope="col">Performance Improvement</th><th scope="col">Validation</th></tr></thead>
           <tbody>
             <tr>
               <th scope="row"><a href="#project-nustar">NuSTAR</a></th>
               <td>STAR · <a href="https://github.com/alexdobin/STAR/commit/b1edc1208d91a53bf40ebae8669f71d50b994851"><time datetime="2024-01-25">2024-01-25</time></a></td>
-              <td><strong>Running time:</strong> 0.84×–2.91×<br><strong>RAM:</strong> 1.12×–1.46×</td>
-              <td><strong>Audit:</strong> Human audited.<br><strong>Output:</strong> Matched in the reported passing tests. One <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md#a-known-behavior-difference">documented option</a> produces different results; verification of full-human alignment output varies by test.</td>
+              <td><strong>Running time:</strong> Up to 2.91× faster; some tests slower<br><strong>RAM:</strong> 11–32% less</td>
+              <td>Human audited. Output checks vary by test; <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md#a-known-behavior-difference">known differences</a> are documented.</td>
             </tr>
             <tr>
               <th scope="row"><a href="#project-nuexpansionhunter">NuExpansionHunter</a></th>
               <td>ExpansionHunter · <a href="https://github.com/Illumina/ExpansionHunter/commit/dc477e1379ed202bbfa103a75e023107a2b02c36"><time datetime="2024-01-30">2024-01-30</time></a></td>
-              <td><strong>Running time:</strong> 1.46×–3.14×<br><strong>RAM:</strong> 1.45×–3.39×</td>
-              <td><strong>Audit:</strong> AI-assisted review; comprehensive human audit pending.<br><strong>Output:</strong> Matched on HG002 in the tested configurations, ignoring BAM record order.</td>
+              <td><strong>Running time:</strong> 1.46–3.14× faster<br><strong>RAM:</strong> 31–70% less</td>
+              <td>AI-assisted review; human audit pending. Identical HG002 outputs in tested configurations, ignoring BAM record order.</td>
             </tr>
             <tr>
               <th scope="row"><a href="#project-nutrf">NuTRF</a></th>
               <td>TRF · <a href="https://github.com/Benson-Genomics-Lab/TRF/commit/355c1f92b24f6b2e71650eda3549d46f0316e571"><time datetime="2020-06-29">2020-06-29</time></a> (README)</td>
-              <td><strong>Running time:</strong> 4.35×–6.23×<br><strong>RAM:</strong> approximately unchanged</td>
-              <td><strong>Audit:</strong> AI-assisted review; human audit pending.<br><strong>Output:</strong> Matched byte for byte in the reported chromosome tests.</td>
+              <td><strong>Running time:</strong> 4.35–6.23× faster<br><strong>RAM:</strong> approximately unchanged</td>
+              <td>AI-assisted review; human audit pending. Byte-identical outputs in the reported chromosome tests.</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#project-numafft">NuMAFFT</a></th>
+              <td><a href="https://gitlab.com/sysimm/mafft/-/tree/ee9799916df6a5d5103d46d54933f8eb6d28e244">MAFFT v7.526</a></td>
+              <td><strong>Running time:</strong> 3.04–10.91× faster (4 threads, M1 Max)<br><strong>Peak child-process RAM:</strong> 22–68% less</td>
+              <td>Human audit pending. Byte-identical outputs in 15/15 four-thread tests; <a href="https://github.com/BioCode-Commons/NuMAFFT#compatibility-note">known long-alignment differences</a>.</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="overview-note">All factors are original ÷ optimized: above 1 means less time or memory; below 1 means more. Each range covers the datasets, tasks, and runs linked below. These differ across projects, so the ranges cannot be used to compare projects. TRF activity was checked on 2026-11-12 (UTC); STAR and ExpansionHunter activity was checked on 2026-11-11 (UTC). Matching outputs on tested datasets and tasks does not establish equivalence for every input and option.</p>
 
       <article class="project" aria-labelledby="project-nustar">
         <h3 id="project-nustar"><a href="https://github.com/BioCode-Commons/NuSTAR/tree/main">NuSTAR</a></h3>
         <p>We maintain NuSTAR, a STAR-derived mapper for bulk and single-cell RNA-seq, including paired-end alignment, two-pass mapping, and STARsolo workflows.</p>
-        <details class="benchmark-details">
-          <summary>View benchmark details</summary>
-        <div class="benchmark-table-wrap" role="region" aria-label="NuSTAR benchmark results" tabindex="0">
-          <table>
-            <thead><tr><th scope="col">Dataset / Task</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, STAR → NuSTAR (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, STAR → NuSTAR (GiB)</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Index construction · GRCh38</th><td>32 threads</td><td>1,094.262 → 375.877</td><td>2.91×</td><td>70.013 → 47.798</td></tr>
-              <tr><th scope="row">Single-end · 535.7M reads</th><td>32 threads</td><td>687.022 → 566.583</td><td>1.21×</td><td>33.482 → 29.540</td></tr>
-              <tr><th scope="row">Paired-end · 535.7M read pairs</th><td>32 threads</td><td>1,652.879 → 1,541.870</td><td>1.07×</td><td>33.475 → 29.480</td></tr>
-              <tr><th scope="row">Paired overlap · 535.7M read pairs</th><td>32 threads</td><td>1,933.666 → 1,741.273</td><td>1.11×</td><td>34.841 → 29.577</td></tr>
-              <tr><th scope="row">Two-pass · 535.7M reads, reported run</th><td>32 threads</td><td>1,644.326 → 1,562.513</td><td>1.05×</td><td>49.496 → 40.732</td></tr>
-              <tr><th scope="row">Solo · PBMC 1k v3, 66.6M pairs</th><td>32 threads</td><td>121.487 → 84.823</td><td>1.43×</td><td>35.938 → 32.100</td></tr>
-              <tr><th scope="row">Full-human two-pass · 535.7M reads</th><td>Pending</td><td>1,598.68 → 1,906.23</td><td>0.839×</td><td>49.49 → 40.73</td></tr>
-              <tr><th scope="row">Solo gene counting · 1M reads</th><td>32 threads</td><td>20.74 → 7.79</td><td>2.66×</td><td>Pending</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="benchmark-note"><strong>Method:</strong> The first six rows are single runs performed serially on an AMD EPYC 9634. The report does not identify the NuSTAR build. The last two rows are separate historical measurements: the full-human test reused the STAR baseline, and the older 1M-read Solo test used synthetic barcodes.</p>
-        <p class="benchmark-note"><strong>Validation:</strong> Output agreement is limited to the checks in each report. The reports cover different runs, and the NuSTAR README lists measurements for the current implementation as pending. The 0.839× result indicates a slowdown.</p>
-        <p class="benchmark-note"><strong>Sources:</strong> <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/BENCHMARKS.md">Full-data benchmarks</a> · <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md">Historical benchmarks and validation</a>.</p>
-        </details>
+        <p><a href="https://github.com/BioCode-Commons/NuSTAR">View on GitHub ↗</a></p>
       </article>
 
       <article class="project" aria-labelledby="project-nutrf">
         <h3 id="project-nutrf"><a href="https://github.com/BioCode-Commons/NuTRF">NuTRF</a></h3>
         <p>NuTRF accelerates Tandem Repeats Finder while preserving its detection model and output formats on the tested inputs.</p>
-        <details class="benchmark-details">
-          <summary>View benchmark details</summary>
-        <div class="benchmark-table-wrap" role="region" aria-label="NuTRF benchmark results" tabindex="0">
-          <table>
-            <thead><tr><th scope="col">Dataset / Task</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, TRF → NuTRF (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, TRF → NuTRF (MiB)</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">GRCh38 chr21 · max period 2000</th><td>1 core</td><td>194.2 → 34.5</td><td>5.63×</td><td>215 → 218</td></tr>
-              <tr><th scope="row">GRCh38 chr21 · max period 500</th><td>1 core</td><td>109.4 → 24.2</td><td>4.52×</td><td>173 → 173</td></tr>
-              <tr><th scope="row">GRCh38 chr20 · max period 2000</th><td>1 core</td><td>858.7 → 138.1</td><td>6.22×</td><td>1,299 → 1,296</td></tr>
-              <tr><th scope="row">GRCh38 chr1 · max period 2000, -l 6</th><td>1 core</td><td>630.8 → 144.9</td><td>4.35×</td><td>5,296 → 5,290</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="benchmark-note"><strong>Method:</strong> Whole-chromosome tests on an AMD EPYC 9634 with AVX2, with one pinned core per process. Wall times are medians of three runs on a shared machine. The chr1 test with the default length limit was not timed to completion.</p>
-        <p class="benchmark-note"><strong>Validation:</strong> Outputs, standard error, exit status, and file lists matched byte for byte in the reported runs.</p>
-        <p class="benchmark-note"><strong>Source:</strong> <a href="https://github.com/BioCode-Commons/NuTRF/blob/main/BENCHMARKS.md">Benchmark methods, all configurations, and limitations</a>.</p>
-        </details>
+        <p><a href="https://github.com/BioCode-Commons/NuTRF">View on GitHub ↗</a></p>
       </article>
 
       <article class="project" aria-labelledby="project-nuexpansionhunter">
         <h3 id="project-nuexpansionhunter"><a href="https://github.com/BioCode-Commons/NuExpansionHunter/tree/main">NuExpansionHunter</a></h3>
         <p>We maintain NuExpansionHunter, an Illumina ExpansionHunter fork for repeat-expansion analysis, including catalog reuse, alignment, seed lookup, and BAM output.</p>
-        <details class="benchmark-details">
-          <summary>View benchmark details</summary>
-        <div class="benchmark-table-wrap" role="region" aria-label="NuExpansionHunter benchmark results" tabindex="0">
-          <table>
-            <thead><tr><th scope="col">Dataset / Task</th><th scope="col">Cores / Threads</th><th scope="col">Wall Time, EH → NuExpansionHunter (s)</th><th scope="col">Speedup</th><th scope="col">Peak RSS, EH → NuExpansionHunter (GiB)</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602 → 2,168.563</td><td>1.520×</td><td>15.338 → 10.588</td></tr>
-              <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735 → 1,167.031</td><td>1.460×</td><td>15.681 → 10.593</td></tr>
-              <tr><th scope="row">HG002</th><td>16 cores</td><td>1,248.945 → 659.187</td><td>1.895×</td><td>29.584 → 10.613</td></tr>
-              <tr><th scope="row">HG002</th><td>32 cores</td><td>1,064.277 → 338.709</td><td>3.142×</td><td>35.956 → 10.614</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="benchmark-note"><strong>Method:</strong> Complete HG002 PCR-free WGS with the 174,293-locus Illumina hg38 catalog. One run per core count, compared with historical original-EH timings. Times exclude catalog preparation and output comparison.</p>
-        <p class="benchmark-note"><strong>Validation:</strong> VCF and JSON outputs matched byte for byte. BAM headers and all records matched, ignoring record order.</p>
-        <p class="benchmark-note"><strong>Source:</strong> <a href="https://github.com/BioCode-Commons/NuExpansionHunter/blob/main/BENCHMARKS.md">Benchmark methods and validation</a>.</p>
-        </details>
+        <p><a href="https://github.com/BioCode-Commons/NuExpansionHunter">View on GitHub ↗</a></p>
+      </article>
+
+      <article class="project" aria-labelledby="project-numafft">
+        <h3 id="project-numafft"><a href="https://github.com/BioCode-Commons/NuMAFFT">NuMAFFT</a></h3>
+        <p>NuMAFFT speeds up MAFFT’s default multiple-sequence alignment workflow using the fast-mafft v10 implementation.</p>
+        <p><a href="https://github.com/BioCode-Commons/NuMAFFT">View on GitHub ↗</a></p>
       </article>
     </section>
     <section id="contact" aria-labelledby="contact-title">
