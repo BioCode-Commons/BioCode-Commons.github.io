@@ -40,31 +40,31 @@
 
       <div class="benchmark-table-wrap overview-table-wrap" role="region" aria-label="Pipeline overview" tabindex="0">
         <table aria-label="Maintained pipeline summary">
-          <thead><tr><th scope="col">Pipeline</th><th scope="col">Original Pipeline</th><th scope="col">Performance Improvement</th><th scope="col">Validation</th></tr></thead>
+          <thead><tr><th scope="col">Pipeline</th><th scope="col">Original Pipeline and Last Activity</th><th scope="col">Performance Improvement</th><th scope="col">Validation</th></tr></thead>
           <tbody>
             <tr>
               <th scope="row"><a href="#project-nustar">NuSTAR</a></th>
               <td>STAR · <a href="https://github.com/alexdobin/STAR/commit/b1edc1208d91a53bf40ebae8669f71d50b994851"><time datetime="2024-01-25">2024-01-25</time></a></td>
-              <td><strong>Running time:</strong> Up to 2.91× faster; some tests slower<br><strong>RAM:</strong> 11–32% less</td>
-              <td>Human audited. Output checks vary by test; <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md#a-known-behavior-difference">known differences</a> are documented.</td>
+              <td><strong>Wall time:</strong> Up to 2.91× faster<br><strong>Peak RSS:</strong> 11–32% less</td>
+              <td><strong>Review:</strong> Human audited.<br><strong>Output:</strong> Matches in passing tests; <a href="https://github.com/BioCode-Commons/NuSTAR/blob/main/docs/STAR_COMPARISON.md#a-known-behavior-difference">known differences</a> are documented.</td>
             </tr>
             <tr>
               <th scope="row"><a href="#project-nuexpansionhunter">NuExpansionHunter</a></th>
               <td>ExpansionHunter · <a href="https://github.com/Illumina/ExpansionHunter/commit/dc477e1379ed202bbfa103a75e023107a2b02c36"><time datetime="2024-01-30">2024-01-30</time></a></td>
-              <td><strong>Running time:</strong> 1.46–3.14× faster<br><strong>RAM:</strong> 31–70% less</td>
-              <td>AI-assisted review; human audit pending. Identical HG002 outputs in tested configurations, ignoring BAM record order.</td>
+              <td><strong>Wall time:</strong> 1.46–3.14× faster<br><strong>Peak RSS:</strong> 31–70% less</td>
+              <td><strong>Review:</strong> AI-assisted; human audit pending.<br><strong>Output:</strong> Matches in tested HG002 configurations, ignoring BAM record order.</td>
             </tr>
             <tr>
               <th scope="row"><a href="#project-nutrf">NuTRF</a></th>
-              <td>TRF · <a href="https://github.com/Benson-Genomics-Lab/TRF/commit/355c1f92b24f6b2e71650eda3549d46f0316e571"><time datetime="2020-06-29">2020-06-29</time></a> (README)</td>
-              <td><strong>Running time:</strong> 4.35–6.23× faster<br><strong>RAM:</strong> approximately unchanged</td>
-              <td>AI-assisted review; human audit pending. Byte-identical outputs in the reported chromosome tests.</td>
+              <td>TRF · <a href="https://github.com/Benson-Genomics-Lab/TRF/commit/355c1f92b24f6b2e71650eda3549d46f0316e571"><time datetime="2020-06-29">2020-06-29</time></a></td>
+              <td><strong>Wall time:</strong> 4.35–6.23× faster<br><strong>Peak RSS:</strong> approximately unchanged</td>
+              <td><strong>Review:</strong> AI-assisted; human audit pending.<br><strong>Output:</strong> Matches byte for byte in tested chromosomes.</td>
             </tr>
             <tr>
               <th scope="row"><a href="#project-numafft">NuMAFFT</a></th>
-              <td><a href="https://gitlab.com/sysimm/mafft/-/tree/ee9799916df6a5d5103d46d54933f8eb6d28e244">MAFFT v7.526</a></td>
-              <td><strong>Running time:</strong> 3.04–10.91× faster (4 threads, M1 Max)<br><strong>Peak child-process RAM:</strong> 22–68% less</td>
-              <td>Human audit pending. Byte-identical outputs in 15/15 four-thread tests; <a href="https://github.com/BioCode-Commons/NuMAFFT#compatibility-note">known long-alignment differences</a>.</td>
+              <td>MAFFT · <a href="https://gitlab.com/sysimm/mafft/-/commit/0a2319b41ec99282487c2d758029cb7ef1fbc5c2"><time datetime="2025-12-11">2025-12-11</time></a></td>
+              <td><strong>Wall time:</strong> 3.04–10.91× faster (4 threads, M1 Max)<br><strong>Peak RSS:</strong> 22–68% less</td>
+              <td><strong>Review:</strong> Human audit pending.<br><strong>Output:</strong> Matches byte for byte in 15/15 four-thread tests; <a href="https://github.com/BioCode-Commons/NuMAFFT#compatibility-note">known long-alignment differences</a>.</td>
             </tr>
           </tbody>
         </table>
