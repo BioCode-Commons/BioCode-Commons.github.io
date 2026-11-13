@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BioCode Commons</title>
   <link rel="icon" href="favicon.svg?v=e3b2caba0f7e" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=754b7f39a2ee">
+  <link rel="stylesheet" href="styles.css?v=425fc012f367">
 </head>
 <body>
   <aside class="sidebar">
@@ -84,25 +84,86 @@
       <article class="project" aria-labelledby="project-nustar">
         <h3 id="project-nustar"><a href="https://github.com/BioCode-Commons/NuSTAR/tree/main">NuSTAR</a></h3>
         <p>We maintain NuSTAR, a STAR-derived mapper for bulk and single-cell RNA-seq, including paired-end alignment, two-pass mapping, and STARsolo workflows.</p>
-        <p><a href="https://github.com/BioCode-Commons/NuSTAR">View on GitHub ↗</a></p>
+        <div class="benchmark-table-wrap" role="region" aria-label="NuSTAR benchmark results" tabindex="0">
+          <table>
+            <caption>Full-data tests: 32 threads on AMD EPYC 9634; final two rows are earlier runs.</caption>
+            <thead>
+              <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th><th scope="colgroup" colspan="2">Peak RSS (GiB)</th></tr>
+              <tr><th scope="col">STAR</th><th scope="col">NuSTAR</th><th scope="col">STAR</th><th scope="col">NuSTAR</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Index construction · GRCh38</th><td>32 threads</td><td>1,094.262</td><td>375.877</td><td>70.013</td><td>47.798</td></tr>
+              <tr><th scope="row">Single-end · 535.7M reads</th><td>32 threads</td><td>687.022</td><td>566.583</td><td>33.482</td><td>29.540</td></tr>
+              <tr><th scope="row">Paired-end · 535.7M read pairs</th><td>32 threads</td><td>1,652.879</td><td>1,541.870</td><td>33.475</td><td>29.480</td></tr>
+              <tr><th scope="row">Paired overlap · 535.7M read pairs</th><td>32 threads</td><td>1,933.666</td><td>1,741.273</td><td>34.841</td><td>29.577</td></tr>
+              <tr><th scope="row">Two-pass · 535.7M reads, reported run</th><td>32 threads</td><td>1,644.326</td><td>1,562.513</td><td>49.496</td><td>40.732</td></tr>
+              <tr><th scope="row">Solo · PBMC 1k v3, 66.6M pairs</th><td>32 threads</td><td>121.487</td><td>84.823</td><td>35.938</td><td>32.100</td></tr>
+              <tr><th scope="row">Full-human two-pass · 535.7M reads · earlier run</th><td>Not reported</td><td>1,598.68</td><td>1,906.23</td><td>49.49</td><td>40.73</td></tr>
+              <tr><th scope="row">Solo gene counting · 1M reads · earlier run</th><td>32 threads</td><td>20.74</td><td>7.79</td><td>Not reported</td><td>Not reported</td></tr>
+            </tbody>
+          </table>
+        </div>
       </article>
 
       <article class="project" aria-labelledby="project-nutrf">
         <h3 id="project-nutrf"><a href="https://github.com/BioCode-Commons/NuTRF">NuTRF</a></h3>
         <p>NuTRF accelerates Tandem Repeats Finder while preserving its detection model and output formats on the tested inputs.</p>
-        <p><a href="https://github.com/BioCode-Commons/NuTRF">View on GitHub ↗</a></p>
+        <div class="benchmark-table-wrap" role="region" aria-label="NuTRF benchmark results" tabindex="0">
+          <table>
+            <caption>1 core on AMD EPYC 9634; median of three runs.</caption>
+            <thead>
+              <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th><th scope="colgroup" colspan="2">Peak RSS (MiB)</th></tr>
+              <tr><th scope="col">TRF</th><th scope="col">NuTRF</th><th scope="col">TRF</th><th scope="col">NuTRF</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">GRCh38 chr21 · max period 2000</th><td>1 core</td><td>194.2</td><td>34.5</td><td>215</td><td>218</td></tr>
+              <tr><th scope="row">GRCh38 chr21 · max period 500</th><td>1 core</td><td>109.4</td><td>24.2</td><td>173</td><td>173</td></tr>
+              <tr><th scope="row">GRCh38 chr20 · max period 2000</th><td>1 core</td><td>858.7</td><td>138.1</td><td>1,299</td><td>1,296</td></tr>
+              <tr><th scope="row">GRCh38 chr1 · max period 2000, -l 6</th><td>1 core</td><td>630.8</td><td>144.9</td><td>5,296</td><td>5,290</td></tr>
+            </tbody>
+          </table>
+        </div>
       </article>
 
       <article class="project" aria-labelledby="project-nuexpansionhunter">
         <h3 id="project-nuexpansionhunter"><a href="https://github.com/BioCode-Commons/NuExpansionHunter/tree/main">NuExpansionHunter</a></h3>
         <p>We maintain NuExpansionHunter, an Illumina ExpansionHunter fork for repeat-expansion analysis, including catalog reuse, alignment, seed lookup, and BAM output.</p>
-        <p><a href="https://github.com/BioCode-Commons/NuExpansionHunter">View on GitHub ↗</a></p>
+        <div class="benchmark-table-wrap" role="region" aria-label="NuExpansionHunter benchmark results" tabindex="0">
+          <table>
+            <caption>HG002; one run per core count, compared with historical ExpansionHunter runs.</caption>
+            <thead>
+              <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th><th scope="colgroup" colspan="2">Peak RSS (GiB)</th></tr>
+              <tr><th scope="col">ExpansionHunter</th><th scope="col">NuExpansionHunter</th><th scope="col">ExpansionHunter</th><th scope="col">NuExpansionHunter</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602</td><td>2,168.563</td><td>15.338</td><td>10.588</td></tr>
+              <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735</td><td>1,167.031</td><td>15.681</td><td>10.593</td></tr>
+              <tr><th scope="row">HG002</th><td>16 cores</td><td>1,248.945</td><td>659.187</td><td>29.584</td><td>10.613</td></tr>
+              <tr><th scope="row">HG002</th><td>32 cores</td><td>1,064.277</td><td>338.709</td><td>35.956</td><td>10.614</td></tr>
+            </tbody>
+          </table>
+        </div>
       </article>
 
       <article class="project" aria-labelledby="project-numafft">
         <h3 id="project-numafft"><a href="https://github.com/BioCode-Commons/NuMAFFT">NuMAFFT</a></h3>
         <p>NuMAFFT speeds up MAFFT’s default multiple-sequence alignment workflow using the fast-mafft v10 implementation.</p>
-        <p><a href="https://github.com/BioCode-Commons/NuMAFFT">View on GitHub ↗</a></p>
+        <div class="benchmark-table-wrap" role="region" aria-label="NuMAFFT benchmark results" tabindex="0">
+          <table>
+            <caption>4 threads on Apple M1 Max; median of three runs. RSS is the largest child process.</caption>
+            <thead>
+              <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th><th scope="colgroup" colspan="2">Peak RSS (MiB)</th></tr>
+              <tr><th scope="col">MAFFT</th><th scope="col">NuMAFFT</th><th scope="col">MAFFT</th><th scope="col">NuMAFFT</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">RNASim · 579 RNA sequences</th><td>4 threads</td><td>10.100</td><td>2.382</td><td>542.3</td><td>423.2</td></tr>
+              <tr><th scope="row">RNASim · 2,000 RNA sequences</th><td>4 threads</td><td>43.292</td><td>8.562</td><td>1,172.5</td><td>660.2</td></tr>
+              <tr><th scope="row">Simulated protein · 2,000 sequences</th><td>4 threads</td><td>4.478</td><td>1.474</td><td>298.5</td><td>198.0</td></tr>
+              <tr><th scope="row">HomFam SDR · 3,000 protein sequences</th><td>4 threads</td><td>4.659</td><td>1.203</td><td>311.4</td><td>99.0</td></tr>
+              <tr><th scope="row">16S.T · 7,350 rRNA sequences</th><td>4 threads</td><td>197.324</td><td>18.092</td><td>4,671.8</td><td>2,554.4</td></tr>
+            </tbody>
+          </table>
+        </div>
       </article>
     </section>
     <section id="contact" aria-labelledby="contact-title">
