@@ -51,7 +51,7 @@
             <tr>
               <th scope="row"><a href="#project-nuexpansionhunter">NuExpansionHunter</a></th>
               <td>ExpansionHunter · <a href="https://github.com/Illumina/ExpansionHunter/commit/dc477e1379ed202bbfa103a75e023107a2b02c36"><time datetime="2024-01-30">2024-01-30</time></a></td>
-              <td><strong>Wall time:</strong> 1.95–2.45× faster<br><strong>Peak RSS:</strong> 31–71% less</td>
+              <td><strong>Wall time:</strong> 2.49–2.79× faster<br><strong>Peak RSS:</strong> 31–70% less</td>
               <td><strong>Review:</strong> AI-assisted; human audit pending.<br><strong>Output:</strong> Matches in tested HG002 configurations, ignoring BAM record order.</td>
             </tr>
             <tr>
@@ -117,16 +117,16 @@
         <p>We maintain NuExpansionHunter, an Illumina ExpansionHunter fork for repeat-expansion analysis, including catalog reuse, alignment, seed lookup, and BAM output.</p>
         <div class="benchmark-table-wrap" role="region" aria-label="NuExpansionHunter benchmark results" tabindex="0">
           <table>
-            <caption>HG002 · <a href="https://github.com/BioCode-Commons/NuExpansionHunter/commit/049c9d60ddbcf516a2d8385085d3772a372caee8">DP-SIMD 049c9d6</a> · one run per core count; original EH timings from earlier runs.</caption>
+            <caption>HG002 · <a href="https://github.com/BioCode-Commons/NuExpansionHunter/commit/66200f627c7d7380c146babf8b6ed79b97ccf408">dp-readprocessing 66200f6</a> · one run per core count; original EH timings from earlier runs.</caption>
             <thead>
               <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th><th scope="colgroup" colspan="2">Peak RSS (GiB)</th></tr>
               <tr><th scope="col">ExpansionHunter</th><th scope="col">NuExpansionHunter</th><th scope="col">ExpansionHunter</th><th scope="col">NuExpansionHunter</th></tr>
             </thead>
             <tbody>
-              <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602</td><td>1,656.914</td><td>15.338</td><td>10.589</td></tr>
-              <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735</td><td>872.056</td><td>15.681</td><td>10.610</td></tr>
-              <tr><th scope="row">HG002</th><td>16 cores</td><td>1,248.945</td><td>510.450</td><td>29.584</td><td>10.624</td></tr>
-              <tr><th scope="row">HG002</th><td>32 cores</td><td>1,064.277</td><td>461.269</td><td>35.956</td><td>10.605</td></tr>
+              <tr><th scope="row">HG002</th><td>4 cores</td><td>3,295.602</td><td>1,295.545</td><td>15.338</td><td>10.593</td></tr>
+              <tr><th scope="row">HG002</th><td>8 cores</td><td>1,703.735</td><td>683.195</td><td>15.681</td><td>10.610</td></tr>
+              <tr><th scope="row">HG002</th><td>16 cores</td><td>1,248.945</td><td>450.786</td><td>29.584</td><td>10.620</td></tr>
+              <tr><th scope="row">HG002</th><td>32 cores</td><td>1,064.277</td><td>381.021</td><td>35.956</td><td>10.615</td></tr>
             </tbody>
           </table>
         </div>
