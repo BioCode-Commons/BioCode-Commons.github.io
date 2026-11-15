@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "project": "NuExpansionHunter",
+  "evidence_url": "https://github.com/BioCode-Commons/NuExpansionHunter/blob/5087f0fc8c2761e03c05c8d5dfa21b52518d2532/BENCHMARKS.md",
+  "rss_unit": "GiB",
+  "rss_scope": "process peak RSS",
+  "time_scope": "Sample run with prebuilt index; index construction excluded",
+  "rows": [
+    {
+      "dataset": "HG002",
+      "resources": "4 cores",
+      "baseline_seconds": 3295.601628569,
+      "candidate_seconds": 1106.572648424,
+      "baseline_rss": 15.33798599243164,
+      "candidate_rss": 6.259098052978516
+    },
+    {
+      "dataset": "HG002",
+      "resources": "8 cores",
+      "baseline_seconds": 1703.734503847,
+      "candidate_seconds": 769.719213461,
+      "baseline_rss": 15.680503845214844,
+      "candidate_rss": 6.276096343994141
+    },
+    {
+      "dataset": "HG002",
+      "resources": "16 cores",
+      "baseline_seconds": 1248.944866625,
+      "candidate_seconds": 447.914016522,
+      "baseline_rss": 29.584033966064453,
+      "candidate_rss": 6.290306091308594
+    },
+    {
+      "dataset": "HG002",
+      "resources": "32 cores",
+      "baseline_seconds": 1064.276889225,
+      "candidate_seconds": 348.427664102,
+      "baseline_rss": 35.9558219909668,
+      "candidate_rss": 6.312610626220703
+    }
+  ],
+  "caption": [
+    {
+      "text": "HG002 · "
+    },
+    {
+      "text": "RAMOPT b00650d",
+      "url": "https://github.com/BioCode-Commons/NuExpansionHunter/commit/b00650d297754f68d78778a441e2fcbf5096250b"
+    },
+    {
+      "text": " · one run per core count, compared with historical ExpansionHunter v5.0.0 runs."
+    }
+  ],
+  "note": [
+    {
+      "text": "RAMOPT wall time and peak RSS include loading the prebuilt index. Index construction ran separately. The original runs include ExpansionHunter’s in-process initialization. "
+    },
+    {
+      "text": "Benchmark details",
+      "url": "https://github.com/BioCode-Commons/NuExpansionHunter/blob/main/BENCHMARKS.md#jiapeng-ramopt-vs-happy-friday-on-full-hg002"
+    },
+    {
+      "text": "."
+    }
+  ],
+  "display": {
+    "time_decimals": 3,
+    "rss_decimals": 3,
+    "speedup_column": true
+  },
+  "summary_context": ""
+}

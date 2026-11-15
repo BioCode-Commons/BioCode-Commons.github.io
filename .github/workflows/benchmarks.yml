@@ -1,0 +1,51 @@
+name: Publish benchmark tables
+on:
+  repository_dispatch:
+    types: [benchmark-published]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    branches: [main]
+    paths: ['benchmarks/**', 'scripts/**', 'build.py', 'template.html', '.github/workflows/benchmarks.yml']
+permissions:
+  contents: read
+concurrency:
+  group: benchmark-publication
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Validate publisher and preservation tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Fetch published data from the four main branches
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/sync_benchmarks.py
+      - run: python3 build.py
+      - name: Package public website only
+        run: |
+          mkdir _site
+          cp index.html styles.css favicon.svg bioinformatics-mascot.jpg .nojekyll _site/
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: benchmark-provenance
+          path: benchmarks/
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e

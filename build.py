@@ -5,6 +5,7 @@ import html
 import hashlib
 import json
 import re
+from scripts.benchmarks import render
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 root = Path(__file__).resolve().parent
@@ -25,6 +26,7 @@ def contents(items):
 
 
 template = (root / 'template.html').read_text()
+template = render(template, root / 'benchmarks')
 rendered = template.replace('{{MISSION}}', html.escape(mission.strip()))
 rendered = rendered.replace('{{COMMUNITY}}', paragraphs(community))
 rendered = rendered.replace('{{APPROACH}}', paragraphs(approach))
