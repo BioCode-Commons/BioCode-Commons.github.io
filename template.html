@@ -52,7 +52,7 @@
               <th scope="row"><a href="#project-nuexpansionhunter">NuExpansionHunter</a></th>
               <td>ExpansionHunter · <a href="https://github.com/Illumina/ExpansionHunter/commit/dc477e1379ed202bbfa103a75e023107a2b02c36"><time datetime="2024-01-30">2024-01-30</time></a></td>
               <td>{{BENCHMARK_SUMMARY:NuExpansionHunter}}</td>
-              <td><strong>Review:</strong> AI-assisted; human audit pending.<br><strong>Output:</strong> Matches in tested HG002 configurations, ignoring BAM record order.</td>
+              <td><strong>Review:</strong> AI-assisted; human audit pending.<br><strong>Output:</strong> VCF, JSON and decoded BAM records matched in all 22 completed WGS comparisons.</td>
             </tr>
             <tr>
               <th scope="row"><a href="#project-nutrf">NuTRF</a></th>
@@ -66,6 +66,12 @@
               <td>{{BENCHMARK_SUMMARY:NuMAFFT}}</td>
               <td><strong>Review:</strong> Human audit pending.<br><strong>Output:</strong> Matches byte for byte in 15/15 four-thread tests; <a href="https://github.com/BioCode-Commons/NuMAFFT#compatibility-note">known long-alignment differences</a>.</td>
             </tr>
+            <tr>
+              <th scope="row"><a href="#project-nuvcftools">NuVCFtools</a></th>
+              <td>VCFtools · <a href="https://github.com/vcftools/vcftools/commit/1f87a83402ffd17ea2723a456b7edf5d80b4a22c"><time datetime="2025-05-15">2025-05-15</time></a></td>
+              <td>{{BENCHMARK_SUMMARY:NuVCFtools}}</td>
+              <td>Validation results pending.</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -73,66 +79,30 @@
       <article class="project" aria-labelledby="project-nustar">
         <h3 id="project-nustar"><a href="https://github.com/BioCode-Commons/NuSTAR/tree/main">NuSTAR</a></h3>
         <p>We maintain NuSTAR, a STAR-derived mapper for bulk and single-cell RNA-seq, including paired-end alignment, two-pass mapping, and STARsolo workflows.</p>
-        <div class="benchmark-table-wrap" role="region" aria-label="NuSTAR benchmark results" tabindex="0">
-          <table>
-            <caption>{{BENCHMARK_CAPTION:NuSTAR}}</caption>
-            <thead>
-{{BENCHMARK_HEADER:NuSTAR}}
-            </thead>
-            <tbody>
-{{BENCHMARK_ROWS:NuSTAR}}
-            </tbody>
-          </table>
-        </div>
+{{BENCHMARK_TABLE:NuSTAR}}
       </article>
 
       <article class="project" aria-labelledby="project-nutrf">
         <h3 id="project-nutrf"><a href="https://github.com/BioCode-Commons/NuTRF">NuTRF</a></h3>
         <p>NuTRF accelerates Tandem Repeats Finder while preserving its detection model and output formats on the tested inputs.</p>
-        <div class="benchmark-table-wrap" role="region" aria-label="NuTRF benchmark results" tabindex="0">
-          <table>
-            <caption>{{BENCHMARK_CAPTION:NuTRF}}</caption>
-            <thead>
-{{BENCHMARK_HEADER:NuTRF}}
-            </thead>
-            <tbody>
-{{BENCHMARK_ROWS:NuTRF}}
-            </tbody>
-          </table>
-        </div>
+{{BENCHMARK_TABLE:NuTRF}}
       </article>
 
       <article class="project" aria-labelledby="project-nuexpansionhunter">
         <h3 id="project-nuexpansionhunter"><a href="https://github.com/BioCode-Commons/NuExpansionHunter/tree/main">NuExpansionHunter</a></h3>
         <p>We maintain NuExpansionHunter, an Illumina ExpansionHunter fork for repeat-expansion analysis, including catalog reuse, alignment, seed lookup, and BAM output.</p>
-        <div class="benchmark-table-wrap" role="region" aria-label="NuExpansionHunter benchmark results" tabindex="0">
-          <table>
-            <caption>{{BENCHMARK_CAPTION:NuExpansionHunter}}</caption>
-            <thead>
-{{BENCHMARK_HEADER:NuExpansionHunter}}
-            </thead>
-            <tbody>
-{{BENCHMARK_ROWS:NuExpansionHunter}}
-            </tbody>
-          </table>
-        </div>
-        <p class="benchmark-note">{{BENCHMARK_NOTE:NuExpansionHunter}}</p>
+{{BENCHMARK_TABLE:NuExpansionHunter}}
       </article>
 
       <article class="project" aria-labelledby="project-numafft">
         <h3 id="project-numafft"><a href="https://github.com/BioCode-Commons/NuMAFFT">NuMAFFT</a></h3>
         <p>NuMAFFT speeds up MAFFT’s default multiple-sequence alignment workflow using the fast-mafft v10 implementation.</p>
-        <div class="benchmark-table-wrap" role="region" aria-label="NuMAFFT benchmark results" tabindex="0">
-          <table>
-            <caption>{{BENCHMARK_CAPTION:NuMAFFT}}</caption>
-            <thead>
-{{BENCHMARK_HEADER:NuMAFFT}}
-            </thead>
-            <tbody>
-{{BENCHMARK_ROWS:NuMAFFT}}
-            </tbody>
-          </table>
-        </div>
+{{BENCHMARK_TABLE:NuMAFFT}}
+      </article>
+
+      <article class="project" aria-labelledby="project-nuvcftools">
+        <h3 id="project-nuvcftools"><a href="https://github.com/BioCode-Commons/NuVCFtools">NuVCFtools</a></h3>
+{{BENCHMARK_TABLE:NuVCFtools}}
       </article>
     </section>
     <section id="contact" aria-labelledby="contact-title">

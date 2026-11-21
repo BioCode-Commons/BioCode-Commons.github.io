@@ -21,11 +21,38 @@ class PublishedBenchmarks(unittest.TestCase):
         template = re.sub(r'<div class="benchmark-table-wrap".*?</div>', '', template, flags=re.S)
         template = re.sub(r'<p class="benchmark-note">.*?</p>', '', template, flags=re.S)
         template = re.sub(r'(<th scope="row"><a href="#project-[^"]+">.*?</th>\s*<td>.*?</td>\s*<td>).*?(</td>)', r'\1\2', template, flags=re.S)
+        template = '\n'.join(line for line in template.splitlines() if line.strip())
         self.assertEqual(hashlib.sha256(template.encode()).hexdigest(), original_template)
 
     def test_all_published_records(self):
         for p in b.PROJECTS:
             b.validate(json.loads((ROOT / 'benchmarks' / (p + '.json')).read_text()), p)
+
+    def test_first_publication(self):
+        p = 'NuVCFtools'
+        pending = {'schema_version': 1, 'project': p, 'status': 'unpublished'}
+        self.assertEqual(b.validate(pending, p), pending)
+        self.assertNotIn('<table>', b.render_table(pending))
+        self.assertNotIn('×', b.render_summary(pending))
+        for change in ({'rows': []}, {'status': 'typo'}, {'project': 'NuTRF'}):
+            with self.assertRaises(ValueError):
+                b.validate({**pending, **change}, p)
+        measured = {**self.data, 'project': p,
+                    'evidence_url': self.data['evidence_url'].replace(self.data['project'], p)}
+        self.assertIn('<table>', b.render_table(b.validate(measured, p)))
+        self.assertIn('×', b.render_summary(measured))
+        with self.assertRaises(ValueError):
+            b.validate({**measured, 'rows': []}, p)
+
+    def test_memory_measure_uses_source_label(self):
+        for metric in ('Peak RAM', 'Peak RSS'):
+            d = {**self.data, 'memory_metric': metric}
+            self.assertIn(metric, b.render_header(b.validate(d, d['project'])))
+            self.assertIn(metric, b.render_summary(d))
+        d.pop('memory_metric')
+        self.assertIn('Peak RSS', b.render_header(d))
+        with self.assertRaises(ValueError):
+            b.validate({**d, 'memory_metric': 'unknown'}, d['project'])
 
     def test_invalid_numbers(self):
         for value in (0, -1, True, '1', float('nan'), float('inf')):

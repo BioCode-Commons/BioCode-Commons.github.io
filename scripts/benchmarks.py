@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 from urllib.parse import urlsplit
 
-PROJECTS = ('NuSTAR', 'NuExpansionHunter', 'NuTRF', 'NuMAFFT')
+PROJECTS = ('NuSTAR', 'NuExpansionHunter', 'NuTRF', 'NuMAFFT', 'NuVCFtools')
 
 
 def require(condition, message):
@@ -38,9 +38,14 @@ def segments(value):
 def validate(d, project):
     fields = {'schema_version', 'project', 'evidence_url', 'rss_unit', 'rss_scope',
               'time_scope', 'rows', 'caption', 'note', 'display', 'summary_context'}
-    require(isinstance(d, dict) and set(d) == fields, 'Unexpected or missing document fields')
-    require(type(d['schema_version']) is int and d['schema_version'] == 1, 'Unsupported schema')
-    require(project in PROJECTS and d['project'] == project, 'Project mismatch')
+    require(isinstance(d, dict), 'Expected benchmark document')
+    require(type(d.get('schema_version')) is int and d['schema_version'] == 1, 'Unsupported schema')
+    require(project in PROJECTS and d.get('project') == project, 'Project mismatch')
+    if d.get('status') == 'unpublished':
+        require(set(d) == {'schema_version', 'project', 'status'}, 'Unpublished records cannot contain measurements')
+        return d
+    require(set(d) in (fields, fields | {'memory_metric'}), 'Unexpected or missing document fields')
+    require(d.get('memory_metric', 'Peak RSS') in ('Peak RSS', 'Peak RAM'), 'Invalid memory metric')
     evidence = url(d['evidence_url'])
     require(re.fullmatch(r'https://github.com/BioCode-Commons/' + re.escape(project)
                          + r'/blob/[0-9a-f]{40}/.+', evidence), 'Pin evidence to a full commit SHA')
@@ -90,26 +95,49 @@ def render_rows(d):
 def render_header(d):
     original = html.escape(d['project'][2:])
     candidate = html.escape(d['project'])
+    memory = d.get('memory_metric', 'Peak RSS')
     speedup = '<th scope="col" rowspan="2">Speedup</th>' if d['display']['speedup_column'] else ''
-    return ('              <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th>' + speedup + '<th scope="colgroup" colspan="2">Peak RSS (' + d['rss_unit'] + ')</th></tr>\n'
+    return ('              <tr><th scope="col" rowspan="2">Dataset / Task</th><th scope="col" rowspan="2">Cores / Threads</th><th scope="colgroup" colspan="2">Wall time (s)</th>' + speedup + '<th scope="colgroup" colspan="2">' + memory + ' (' + d['rss_unit'] + ')</th></tr>\n'
             + '              <tr><th scope="col">' + original + '</th><th scope="col">' + candidate + '</th><th scope="col">' + original + '</th><th scope="col">' + candidate + '</th></tr>')
 
 
 def render_summary(d):
+    if d.get('status') == 'unpublished':
+        return 'Awaiting first benchmark'
     ratios = [r['baseline_seconds'] / r['candidate_seconds'] for r in d['rows']]
     savings = [100 * (1 - r['candidate_rss'] / r['baseline_rss']) for r in d['rows']]
     def memory_change(value):
         return f"{abs(value):.1f}% {'less' if value >= 0 else 'more'}"
     context = ' (' + html.escape(d['summary_context']) + ')' if d['summary_context'] else ''
     return (f'<strong>Wall time:</strong> {min(ratios):.2f}–{max(ratios):.2f}× speedup' + context
-            + '<br><strong>Peak RSS:</strong> ' + memory_change(min(savings)) + '–' + memory_change(max(savings)))
+            + '<br><strong>' + d.get('memory_metric', 'Peak RSS') + ':</strong> ' + memory_change(min(savings)) + '–' + memory_change(max(savings)))
 
+
+
+def render_table(d):
+    if d.get('status') == 'unpublished':
+        return '        <p class="benchmark-note">No benchmark results published yet.</p>'
+    table = f'''        <div class="benchmark-table-wrap" role="region" aria-label="{html.escape(d['project'])} benchmark results" tabindex="0">
+          <table>
+            <caption>{render_segments(d['caption'])}</caption>
+            <thead>
+{render_header(d)}
+            </thead>
+            <tbody>
+{render_rows(d)}
+            </tbody>
+          </table>
+        </div>'''
+    note = render_segments(d['note'])
+    if note:
+        table += f'\n        <p class="benchmark-note">{note}</p>'
+    return table
 
 
 def render(template, directory):
     for project in PROJECTS:
         d = validate(json.loads((Path(directory) / (project + '.json')).read_text()), project)
-        for key, value in [('ROWS', render_rows(d)), ('HEADER', render_header(d)), ('SUMMARY', render_summary(d)), ('CAPTION', render_segments(d['caption'])), ('NOTE', render_segments(d['note']))]:
+        for key, value in [('TABLE', render_table(d)), ('SUMMARY', render_summary(d))]:
             template = template.replace('{{BENCHMARK_' + key + ':' + project + '}}', value)
     require('{{BENCHMARK_' not in template, 'Unknown benchmark placeholder')
     return template
